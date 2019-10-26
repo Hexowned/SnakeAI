@@ -65,7 +65,7 @@ class Board:
     def spawn_wall(self):
         self.spawn_random_object(GameObject.WALL)
 
-    def spawn_ramdom_object(self, gameObjectType):
+    def spawn_random_object(self, gameObjectType):
         new_x, new_y = self.get_free_xy()
         self.set_game_object_at(new_x, new_y, gameObjectType)
 
