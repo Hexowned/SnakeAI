@@ -28,9 +28,10 @@ class Snake:
         if self.tics_to_starve != -1 and self.tics_to_starve == 0:
             return True
 
-        move = self.agent.get_move(board.get_copy(), self.score, self.tics_alive, self.tics_to_starve, self.direction)
+        move = self.agent.get_move(board.get_copy(
+        ), self.score, self.tics_alive, self.tics_to_starve, self.direction)
 
-        if not (move == Move.RIGHT or move == Move.LEFT or move == Move.STRAIGHT):
+        if not (move == Move.RIGHT or move == Move.LEFT or move == Move.STRAIGHT):  # noqa E501
             return True
 
         self.direction = self.direction.get_new_direction(move)
@@ -55,7 +56,8 @@ class Snake:
         return False
 
     def reset(self, board):
-        print("Score achieved: {}. Turns it took: {}".format(self.score, self.tics_alive))
+        print("Score achieved: {}. Turns it took: {}".format(
+            self.score, self.tics_alive))
         self.agent.on_die()
         self.tics_alive = 0
         self.score = 0

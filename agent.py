@@ -10,6 +10,7 @@ from move import Move, Direction
 
 BOARD_SIZE = 25
 
+
 class Node:
     def __init__(self, point, parent=None):
         self.point = point
@@ -81,12 +82,12 @@ def a_star_search(start, goal, board):
 
             skip = False
             for node in open_list:
-                if ((node.point == successor.point)): 
+                if ((node.point == successor.point)):
                     skip = True
                     break
 
             for node in closed_list:
-                if ((node.point == successor.point)): 
+                if ((node.point == successor.point)):
                     skip = True
                     break
 
@@ -107,7 +108,6 @@ def a_star_search(start, goal, board):
         closed_list_num = len(closed_list)
         open_list_num = len(open_list)
 
-
     return None
 
 
@@ -126,7 +126,6 @@ class Agent:
             self.path = []
         self.current_score = score
 
-
         snek = (0, 0)
         for x in range(len(board)):
             for y in range(len(board[x])):
@@ -140,22 +139,21 @@ class Agent:
             for x in range(len(board)):
                 for y in range(len(board[x])):
                     if board[x][y] == GameObject.FOOD:
-                        food.append((x,y,get_manhattan_distance(snek, (x,y))))
+                        food.append(
+                            (x, y, get_manhattan_distance(snek, (x, y))))
 
             best_food = math.inf
-            best_food_coordinate = (0,0)
+            best_food_coordinate = (0, 0)
             for x in range(len(food)):
                 if food[x][2] < best_food:
                     best_food = food[x][2]
                     best_food_coordinate = (food[x][0], food[x][1])
-
 
             start_time = time.time() * 1000
             a_star_node = a_star_search(snek, best_food_coordinate, board)
             end_time = time.time() * 1000
             total_time = end_time-start_time
             self.times.append(total_time)
-
 
             if a_star_node is None:
                 skip = True
@@ -164,7 +162,8 @@ class Agent:
                 raw_sauce = a_star_node.path_to_parent()
 
                 for to_be_tuple_coordinate in range(len(raw_sauce)//2):
-                    self.path.append((raw_sauce[2*to_be_tuple_coordinate], raw_sauce[2*to_be_tuple_coordinate+1]))
+                    self.path.append(
+                        (raw_sauce[2*to_be_tuple_coordinate], raw_sauce[2*to_be_tuple_coordinate+1]))
 
                 self.path.pop()
 
@@ -178,7 +177,6 @@ class Agent:
                 return Move.RIGHT
             else:
                 return Move.LEFT
-
 
         next_step = self.path.pop()
 
@@ -233,7 +231,6 @@ class Agent:
             return Move.RIGHT
         else:
             return Move.LEFT
-
 
     def on_die(self):
         self.scores.append(self.current_score)

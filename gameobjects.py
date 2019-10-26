@@ -1,6 +1,7 @@
 from enum import Enum
 from collections import namedtuple
 
+
 class GameObject(Enum):
     WALL = 1
     FOOD = 2
@@ -19,7 +20,9 @@ class GameObject(Enum):
 
         return m.get(self, "#ffffff")
 
+
 Color = namedtuple('Color', ['value', 'displayString'])
+
 
 class Colors(Enum):
     @property

@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class Move(Enum):
     LEFT = -1
     STRAIGHT = 0
@@ -12,10 +13,8 @@ class Direction(Enum):
     SOUTH = 2
     WEST = 3
 
-
     def get_new_direction(self, move):
         return Direction(self.value + move.value) % 4
-
 
     def get_xy_manipulation(self):
         m = {

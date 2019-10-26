@@ -1,6 +1,7 @@
 from random import randint
 from gameobjects import *
 
+
 class Board:
 
     max_random_tries = 5
@@ -9,7 +10,8 @@ class Board:
         self.snake = snake
         self.width = board_width
         self.height = board_height
-        self.board = [[GameObject.EMPTY for x in range(board_width)] for y in range(board_height)]
+        self.board = [[GameObject.EMPTY for x in range(
+            board_width)] for y in range(board_height)]
         self.block_width = canvas_width / board_width
         self.block_height = canvas_height / board_height
         self.max_nr_food = max_nr_food
@@ -52,7 +54,8 @@ class Board:
         self.spawn_new_food()
 
     def get_copy(self):
-        copy = [[GameObject.EMPTY for x in range(self.width)] for y in range(self.height)]
+        copy = [[GameObject.EMPTY for x in range(
+            self.width)] for y in range(self.height)]
         for x in range(self.width):
             for y in range(self.height):
                 copy[x][y] = self.get_game_object_at(x, y)
@@ -87,7 +90,8 @@ class Board:
                         available.append((x, y))
 
             if len(available) == 0:
-                raise RuntimeError("The game broken due to filling each cell of the board, does this mean you won!?!?")
+                raise RuntimeError(
+                    "The game broken due to filling each cell of the board, does this mean you won!?!?")
             else:
                 new_x, new_y = available[randint(0, len(available) - 1)]
 
